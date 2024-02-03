@@ -1,20 +1,14 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recan/http/getproduct.dart';
 import 'package:recan/screen/cart/cart.dart';
 // import 'package:recan/screen/cart/usecasecart/shopinglogic.dart';
-import 'package:recan/screen/cart/cart.dart';
-import 'package:recan/screen/myOrderPage.dart';
+
 import 'package:recan/screen/navigation_screen/custom_animated_bottom_bar.dart';
 import 'package:recan/screen/product.dart';
-import 'package:recan/screen/recanProfile.dart';
-import 'package:recan/widgets/recandrawer.dart';
+import 'package:recan/screen/Profile.dart';
+import 'package:recan/widgets/dawer.dart';
 import '../constants.dart';
 import 'category/category.dart';
-import 'navigation_screen/payment.dart';
-import 'navigation_screen/servicepage.dart';
-import 'paymentgatway/khalti.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

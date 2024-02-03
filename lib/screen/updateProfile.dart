@@ -178,13 +178,14 @@ class _updateProfileState extends State<updateProfile> {
       //   child: recandrawer(),
       // ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 23, 46, 252),
         title: const Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "RECANAPP",
+                "Pasell",
                 style: TextStyle(
                     fontSize: 22, color: Color.fromARGB(255, 255, 255, 255)),
               ),
@@ -201,6 +202,9 @@ class _updateProfileState extends State<updateProfile> {
               key: _formKey,
               child: Column(
                 children: [
+                  const SizedBox(
+                    height: 50,
+                  ),
                   Stack(
                     children: [
                       CircleAvatar(

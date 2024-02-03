@@ -8,6 +8,7 @@ import 'package:recan/utils/url.dart';
 class HttpUser {
   String success = '';
   String token = '';
+  // String userId = "";
   final storage = const FlutterSecureStorage();
 
   // Register User
@@ -50,10 +51,15 @@ class HttpUser {
       final data = jsonDecode(response.body) as Map;
       print(data);
       token = data['token'];
+      // userId = data["_id"];
       print(token);
       if (response.statusCode == 200) {
         await storage.write(key: 'token', value: token);
+
+        // await storage.write(key: '_id', value: userId);
         print(await storage.read(key: 'token'));
+
+        print(await storage.read(key: '_id'));
         return true;
       }
       print('object');

@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 import 'package:recan/screen/updateProfile.dart';
 import 'package:recan/utilities/token.dart';
 import 'package:recan/utils/url.dart';
-import 'package:recan/widgets/recandrawer.dart';
+import 'package:recan/widgets/dawer.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -530,24 +530,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                       height: 35,
                                       width: 185,
                                       child: ElevatedButton(
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.green)),
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                    type:
-                                                        PageTransitionType.size,
-                                                    alignment:
-                                                        Alignment.bottomCenter,
-                                                    child: updateProfile(
-                                                        data: snapshot.data)));
-                                            // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> updateProfile()));
-                                          },
-                                          child: const Icon(Icons
-                                              .portable_wifi_off_outlined)),
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.green)),
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                  type: PageTransitionType.size,
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  child: updateProfile(
+                                                      data: snapshot.data)));
+                                          // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> updateProfile()));
+                                        },
+                                        child: const Icon(Icons.system_update),
+                                      ),
                                     ),
                                   ),
                                   // Padding(

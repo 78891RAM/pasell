@@ -7,7 +7,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:recan/screen/product.dart';
 import 'package:recan/screen/productDetail.dart';
 import 'package:recan/utilities/token.dart';
-import 'package:recan/widgets/recandrawer.dart';
+import 'package:recan/widgets/dawer.dart';
 import '../utils/url.dart';
 
 class MyOrderPage extends StatefulWidget {
@@ -24,16 +24,39 @@ class _MyOrderPageState extends State<MyOrderPage> {
   Future token() async {
     final userData = await parseToken();
     userId = userData['userId'];
-    // print("Userid" + userid);
+    print("id" + userId);
     return userId;
   }
 
+  // Future getPost() async {
+  //   // var userid = 2;
+  //   var res = await http.get(Uri.parse('${baseUrl}myproduct/$userId'));
+  //   var data = jsonDecode(res.body);
+  //   debugPrint(data);
+  //   print('data of my product${data.length}');
+  //   return data;
+  // }
+
   Future getPost() async {
-    // var userid = 2;
-    var res = await http.get(Uri.parse('${baseUrl}myproduct/$userId'));
-    var data = jsonDecode(res.body);
-    print('data ${data.length}');
-    return data;
+    try {
+      var res = await http.get(Uri.parse('${baseUrl}myproduct/$userId'));
+
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body);
+        debugPrint('Data: $data');
+        print('Data of my product: ${data.length}');
+        return data;
+      } else {
+        print('Error: ${res.statusCode}');
+        print('Response: ${res.body}');
+        // Handle non-200 status code, e.g., show an error message to the user
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      print('Error: $e');
+      // Handle other exceptions, e.g., network errors
+      throw Exception('Failed to load data');
+    }
   }
 
   Future deteleProduct(String productid) async {
@@ -42,11 +65,12 @@ class _MyOrderPageState extends State<MyOrderPage> {
         await http.delete(Uri.parse("${baseUrl}product/delete/$productid"));
     var data = jsonDecode(response.body) as Map;
     if (response.statusCode == 201) {
-      // print(data);
+      print(data);
       return response;
     } else {
       print('err');
     }
+    // return data;
   }
 
   @override
@@ -73,7 +97,7 @@ class _MyOrderPageState extends State<MyOrderPage> {
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Cart Page", style: TextStyle(fontSize: 20)),
+            Text("order Page", style: TextStyle(fontSize: 20)),
           ],
         ),
         actions: [
@@ -137,8 +161,9 @@ class _MyOrderPageState extends State<MyOrderPage> {
                                             ),
                                             ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                  backgroundColor: const Color.fromARGB(
-                                                      255, 148, 106, 63)),
+                                                  backgroundColor:
+                                                      const Color.fromARGB(
+                                                          255, 148, 106, 63)),
                                               onPressed: () {},
                                               child: Text(
                                                 "${snapshot.data[index]['catogery']}",
@@ -205,8 +230,9 @@ class _MyOrderPageState extends State<MyOrderPage> {
                                                 });
                                               },
                                               style: ElevatedButton.styleFrom(
-                                                  backgroundColor: const Color.fromARGB(
-                                                      255, 42, 108, 250)),
+                                                  backgroundColor:
+                                                      const Color.fromARGB(
+                                                          255, 42, 108, 250)),
                                               child: const Text("View Details"),
                                             ),
                                           ),

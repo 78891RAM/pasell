@@ -10,11 +10,11 @@ import 'package:page_transition/page_transition.dart';
 import 'package:proximity_sensor/proximity_sensor.dart';
 import 'package:recan/screen/Entry/loginScreen.dart';
 import 'package:recan/screen/productDetail.dart';
-import 'package:recan/screen/recanProfile.dart';
+import 'package:recan/screen/Profile.dart';
 import 'package:recan/utils/url.dart';
-import 'package:recan/widgets/recandrawer.dart';
+import 'package:recan/widgets/dawer.dart';
 import 'package:sensors_plus/sensors_plus.dart';
-import 'package:shake/shake.dart';
+// import 'package:shake/shake.dart';
 
 class ProductPagetry extends StatefulWidget {
   const ProductPagetry({super.key, onPressed});
@@ -26,7 +26,7 @@ class ProductPagetry extends StatefulWidget {
 
 class _ProductPagetryState extends State<ProductPagetry> {
   final _streamSubscriptions = <StreamSubscription<dynamic>>[];
-  late ShakeDetector detector;
+  // late ShakeDetector detector;
   var user = '';
   // final VoidCallback onPressed;
 
@@ -88,47 +88,47 @@ class _ProductPagetryState extends State<ProductPagetry> {
     });
   }
 
-  @override
-  void initState() {
-    detector = ShakeDetector.autoStart(
-      onPhoneShake: () {
-        setState(() {
-          Navigator.pushNamed(context, "/Login");
-        });
-      },
-    );
-    @override
-    void dispose() {
-      detector.stopListening();
-      super.dispose();
-    }
+  // @override
+  // void initState() {
+  //   detector = ShakeDetector.autoStart(
+  //     onPhoneShake: () {
+  //       setState(() {
+  //         Navigator.pushNamed(context, "/Login");
+  //       });
+  //     },
+  //   );
+  //   @override
+  //   void dispose() {
+  //     detector.stopListening();
+  //     super.dispose();
+  //   }
 
-    super.initState();
-    getPost().then((value) {
-      setState(() {
-        // ignore: void_checks
-        return value;
-      });
-    });
-    listenSensor().then((value) {
-      setState(() {
-        return value;
-      });
-    });
-    //
-    _streamSubscriptions.add(
-      accelerometerEvents.listen(
-        (AccelerometerEvent event) async {
-          if (event.y > 10 && event.y < 15) {
-            await storage.delete(key: 'token');
-            // ignore: use_build_context_synchronously
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Login()));
-          }
-        },
-      ),
-    );
-  }
+  //   super.initState();
+  //   getPost().then((value) {
+  //     setState(() {
+  //       // ignore: void_checks
+  //       return value;
+  //     });
+  //   });
+  //   listenSensor().then((value) {
+  //     setState(() {
+  //       return value;
+  //     });
+  //   });
+  //   //
+  //   _streamSubscriptions.add(
+  //     accelerometerEvents.listen(
+  //       (AccelerometerEvent event) async {
+  //         if (event.y > 10 && event.y < 15) {
+  //           await storage.delete(key: 'token');
+  //           // ignore: use_build_context_synchronously
+  //           Navigator.push(context,
+  //               MaterialPageRoute(builder: (context) => const Login()));
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -91,39 +91,6 @@ class ProductmodelAdapter extends TypeAdapter<Productmodel> {
   }
 }
 
-// class ShoppingCart {
-//   Box<Productmodel>? cartBox;
-
-//   // Private constructor to prevent instantiation
-//   ShoppingCart._privateConstructor();
-
-//   // Singleton instance
-//   static final ShoppingCart _instance = ShoppingCart._privateConstructor();
-
-//   // Getter to access the instance
-//   static ShoppingCart get instance => _instance;
-
-//   Future<void> openBox() async {
-//     cartBox ??= await Hive.openBox<Productmodel>('cart');
-//   }
-
-//   void addToCart(Productmodel product) {
-//     if (cartBox != null && cartBox!.containsKey(product.id)) {
-//       var existingProduct = cartBox!.get(product.id)!;
-//       existingProduct.quantity += 1;
-//       cartBox!.put(product.id, existingProduct);
-//     } else {
-//       product.quantity = 1;
-//       cartBox!.put(product.id, product);
-//     }
-//   }
-
-//   Map<dynamic, Productmodel> getCartItems() {
-//     return cartBox?.toMap() ?? {};
-//   }
-// }
-
-// using
 class ShoppingCart extends ChangeNotifier {
   Box<Productmodel>? cartBox;
 
@@ -148,59 +115,10 @@ class ShoppingCart extends ChangeNotifier {
     }
   }
 
-  // void addToCart(Productmodel product) {
-  //   if (cartBox != null && cartBox!.containsKey(product.id)) {
-  //     var existingProduct = cartBox!.get(product.id)!;
-  //     existingProduct.quantity += 1;
-  //     cartBox!.put(product.id, existingProduct);
-  //   } else {
-  //     product.quantity = 1;
-  //     cartBox!.put(product.id, product);
-  //   }
-  // }
-
   Map<dynamic, Productmodel> getCartItems() {
     return cartBox?.toMap() ?? {};
   }
 }
-
-// class ShoppingCart extends ChangeNotifier {
-//   Box<Productmodel>? cartBox;
-
-//   Future<void> openBox() async {
-//     cartBox ??= await Hive.openBox<Productmodel>('cart');
-//   }
-
-//   void addToCart(Productmodel product) {
-//     if (cartBox != null && cartBox!.containsKey(product.id)) {
-//       var existingProduct = cartBox!.get(product.id)!;
-//       existingProduct.quantity += 1;
-//       cartBox!.put(product.id, existingProduct);
-//     } else {
-//       product.quantity = 1;
-//       cartBox!.put(product.id, product);
-//     }
-
-//     notifyListeners(); // Notify listeners after modifying the cart
-//   }
-//   // void addToCart(Productmodel product) {
-//   //   if (cartBox != null) {
-//   //     if (cartBox!.containsKey(product.id)) {
-//   //       var existingProduct = cartBox!.get(product.id)!;
-//   //       existingProduct.quantity += 1;
-//   //       cartBox!.put(product.id, existingProduct);
-//   //     } else {
-//   //       product.quantity = 1;
-//   //       cartBox!.put(product.id, product);
-//   //     }
-//   //     notifyListeners();
-//   //   }
-//   // }
-
-//   Map<dynamic, Productmodel> getCartItems() {
-//     return cartBox?.toMap() ?? {};
-//   }
-// }
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});

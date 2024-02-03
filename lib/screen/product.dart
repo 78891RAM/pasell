@@ -14,9 +14,9 @@ import 'package:recan/screen/Entry/registerScreen.dart';
 import 'package:recan/screen/category/category.dart';
 import 'package:recan/screen/productDetail.dart';
 import 'package:recan/utils/url.dart';
-import 'package:recan/widgets/recandrawer.dart';
+import 'package:recan/widgets/dawer.dart';
 import 'package:sensors_plus/sensors_plus.dart';
-import 'package:shake/shake.dart';
+// import 'package:shake/shake.dart';
 
 import '../widgets/crouselslider.dart';
 import 'cart/cart.dart';
@@ -29,8 +29,8 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  final _streamSubscriptions = <StreamSubscription<dynamic>>[];
-  late ShakeDetector detector;
+  // final _streamSubscriptions = <StreamSubscription<dynamic>>[];
+  // late ShakeDetector detector;
   var user = '';
 
   var _onCardClick;
@@ -80,78 +80,78 @@ class _ProductPageState extends State<ProductPage> {
 
   final storage = const FlutterSecureStorage();
   //
-  // proximity sensor start here
-  bool _isNear = false;
-  late StreamSubscription<dynamic> _streamSubscription;
-  @override
-  void dispose() {
-    super.dispose();
-    _streamSubscription.cancel();
-  }
+  // // proximity sensor start here
+  // bool _isNear = false;
+  // late StreamSubscription<dynamic> _streamSubscription;
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _streamSubscription.cancel();
+  // }
 
-  Future<void> listenSensor() async {
-    FlutterError.onError = (FlutterErrorDetails details) {
-      if (foundation.kDebugMode) {
-        FlutterError.dumpErrorToConsole(details);
-      }
-    };
-    _streamSubscription = ProximitySensor.events.listen((int event) {
-      setState(() {
-        _isNear = (event > 0) ? true : false;
-        // print('check proximity sensor');
-        if (_isNear == true) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const RegisterPage(key: null),
-            ),
-          );
-        }
-      });
-    });
-  }
+  // Future<void> listenSensor() async {
+  //   FlutterError.onError = (FlutterErrorDetails details) {
+  //     if (foundation.kDebugMode) {
+  //       FlutterError.dumpErrorToConsole(details);
+  //     }
+  //   };
+  //   _streamSubscription = ProximitySensor.events.listen((int event) {
+  //     setState(() {
+  //       _isNear = (event > 0) ? true : false;
+  //       // print('check proximity sensor');
+  //       if (_isNear == true) {
+  //         Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (context) => const RegisterPage(key: null),
+  //           ),
+  //         );
+  //       }
+  //     });
+  //   });
+  // }
 
-  @override
-  void initState() {
-    detector = ShakeDetector.autoStart(
-      onPhoneShake: () {
-        setState(() {
-          Navigator.pushNamed(context, "/Login");
-        });
-      },
-    );
-    @override
-    void dispose() {
-      detector.stopListening();
-      super.dispose();
-    }
+  // @override
+  // void initState() {
+  //   detector = ShakeDetector.autoStart(
+  //     onPhoneShake: () {
+  //       setState(() {
+  //         Navigator.pushNamed(context, "/Login");
+  //       });
+  //     },
+  //   );
+  //   @override
+  //   void dispose() {
+  //     detector.stopListening();
+  //     super.dispose();
+  //   }
 
-    super.initState();
-    getPost().then((value) {
-      setState(() {
-        // ignore: void_checks
-        return value;
-      });
-    });
-    listenSensor().then((value) {
-      setState(() {
-        return value;
-      });
-    });
-    //
-    _streamSubscriptions.add(
-      accelerometerEvents.listen(
-        (AccelerometerEvent event) async {
-          if (event.y > 10 && event.y < 15) {
-            await storage.delete(key: 'token');
-            // ignore: use_build_context_synchronously
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Login()));
-          }
-        },
-      ),
-    );
-  }
+  //   super.initState();
+  //   getPost().then((value) {
+  //     setState(() {
+  //       // ignore: void_checks
+  //       return value;
+  //     });
+  //   });
+  //   listenSensor().then((value) {
+  //     setState(() {
+  //       return value;
+  //     });
+  //   });
+  //   //
+  //   _streamSubscriptions.add(
+  //     accelerometerEvents.listen(
+  //       (AccelerometerEvent event) async {
+  //         if (event.y > 10 && event.y < 15) {
+  //           await storage.delete(key: 'token');
+  //           // ignore: use_build_context_synchronously
+  //           Navigator.push(context,
+  //               MaterialPageRoute(builder: (context) => const Login()));
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
   // ---------------------------------------------
 
   @override
